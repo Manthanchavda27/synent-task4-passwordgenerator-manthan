@@ -1,21 +1,32 @@
 import random
 import string
 
-# Character sets
-uppercase = string.ascii_uppercase
-lowercase = string.ascii_lowercase
-digits = string.digits
-symbols = string.punctuation
+def generate_password(length):
+    uppercase = string.ascii_uppercase
+    lowercase = string.ascii_lowercase
+    digits = string.digits
+    symbols = string.punctuation
 
-# Combine all characters
-all_characters = uppercase + lowercase + digits + symbols
+    all_characters = uppercase + lowercase + digits + symbols
 
-# Take user input
-length = int(input("Enter password length: "))
+    password = ""
 
-password = ""
+    for i in range(length):
+        password += random.choice(all_characters)
 
-for i in range(length):
-    password += random.choice(all_characters)
+    return password
 
-print("\nGenerated Password:", password)
+
+print("===== PASSWORD GENERATOR =====")
+
+try:
+    length = int(input("Enter password length: "))
+
+    if length < 4:
+        print("Password length should be at least 4.")
+    else:
+        password = generate_password(length)
+        print("\nGenerated Password:", password)
+
+except ValueError:
+    print("Invalid input! Please enter numbers only.")
